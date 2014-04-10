@@ -1,3 +1,10 @@
+# Alexander Vershilov <qnikst@gentoo.org> (10 Apr 2014)
+# Conduit changes use dev-haskell/conduit-extra instread
+dev-haskell/attoparsec-conduit
+dev-haskell/blaze-builder-conduit
+dev-haskell/zlib-conduit
+dev-haskell/network-conduit
+
 # Sergei Trofimovich <slyfox@gentoo.org> (06 Apr 2014)
 # Old ghc versions.
 <dev-lang/ghc-7.4
@@ -6,12 +13,6 @@
 # Masked for removal in 30 days. Deprecated in favour of
 # dev-haskell/exceptions.
 dev-haskell/attempt
-
-# Alexander Vershilov <qnikst@gentoo.org> (10 Feb 2014)
-# Yesod platform has rules that doesn't play well with
-# gentoo haskell rules, so it's completely unmaintainable.
-# Consider using @yesod-platform set or fix this package.
-dev-haskell/yesod-platform
 
 # Alexander Vershilov <qnikst@gentoo.org> (10 Feb 2014)
 # Masked for removal. Deprecated, use tls instead.
