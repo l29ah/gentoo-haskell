@@ -12,30 +12,37 @@ inherit haskell-cabal
 DESCRIPTION="bindings to imagemagick library"
 HOMEPAGE="http://hackage.haskell.org/package/imagemagick"
 SRC_URI="mirror://hackage/packages/archive/${PN}/${PV}/${P}.tar.gz"
+RESTRICT="test" # due to missing files
 
 LICENSE="imagemagick"
 SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
 IUSE="buildexamples"
 
-RDEPEND=">=dev-haskell/lifted-base-0.1:=[profile?] <dev-haskell/lifted-base-0.3:=[profile?]
-	>=dev-haskell/monadcatchio-transformers-0.3:=[profile?] <dev-haskell/monadcatchio-transformers-0.4:=[profile?]
-	>=dev-haskell/resourcet-0.3:=[profile?] <dev-haskell/resourcet-0.5:=[profile?]
+RDEPEND=">=dev-haskell/monadcatchio-transformers-0.3:=[profile?] <dev-haskell/monadcatchio-transformers-0.4:=[profile?]
+	>=dev-haskell/resourcet-0.3:=[profile?] <dev-haskell/resourcet-1.2:=[profile?]
 	>=dev-haskell/system-filepath-0.4:=[profile?] <dev-haskell/system-filepath-0.5:=[profile?]
 	>=dev-haskell/text-0.11:=[profile?] <dev-haskell/text-1.3:=[profile?]
 	>=dev-haskell/transformers-0.3:=[profile?] <dev-haskell/transformers-0.4:=[profile?]
 	>=dev-haskell/vector-0.9:=[profile?] <dev-haskell/vector-0.11:=[profile?]
 	>=dev-lang/ghc-6.10.4:=
 	media-gfx/imagemagick
+	buildexamples? ( >=dev-haskell/lifted-base-0.1:=[profile?] <dev-haskell/lifted-base-0.3:=[profile?] )
 "
 DEPEND="${RDEPEND}
 	>=dev-haskell/cabal-1.8
 	virtual/pkgconfig
-	test? ( dev-haskell/hunit
-		>=dev-haskell/quickcheck-2
-		dev-haskell/test-framework
-		dev-haskell/test-framework-hunit
-		dev-haskell/test-framework-quickcheck2 )
+	buildexamples? ( test? ( dev-haskell/hunit
+					>=dev-haskell/quickcheck-2
+					dev-haskell/test-framework
+					dev-haskell/test-framework-hunit
+					dev-haskell/test-framework-quickcheck2 ) )
+	!buildexamples? ( test? ( dev-haskell/hunit
+					>=dev-haskell/lifted-base-0.1 <dev-haskell/lifted-base-0.3
+					>=dev-haskell/quickcheck-2
+					dev-haskell/test-framework
+					dev-haskell/test-framework-hunit
+					dev-haskell/test-framework-quickcheck2 ) )
 "
 
 src_configure() {
